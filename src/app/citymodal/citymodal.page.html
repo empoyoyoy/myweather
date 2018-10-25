@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-item>
+      <ion-title>Pick City</ion-title>
+      <ion-icon style="cursor:pointer;" (click)="closeModal()" name='close'></ion-icon> 
+    </ion-item> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-searchbar id="dynamicAttr" placeholder="Search City" animated="true" (keyup)="getQuery(cityinp)" #cityinp show-cancel-button="true"  (ionClear)="onCancel($event)"> 
+          </ion-searchbar>
+          <ion-list>
+            <ion-item class="lista" *ngFor="let a of citiesres;let i=index;" (click)="cityinfo(a.lon,a.lat,a.formattedname)"> 
+              <ion-avatar width="20" height="20" slot="start" >
+                <img src="{{countrycode[i]}}" style="border: 1px solid black">
+              </ion-avatar>
+              <ion-label>
+                <h2 class="wrap">{{a.formattedname}}</h2>
+                <!-- <img width="20" height="20" src="{{countrycode[i]}}"> -->
+                <h3>{{weatherdesc[i]}}</h3>
+                <ion-badge color="primary">{{weathtempdeg[i]}}&deg;</ion-badge>
+              </ion-label>
+            </ion-item>
+            <h2 *ngIf="(citiesres.length) < 1">No City Selected</h2>
+          </ion-list>
+         
+    <!-- <ion-button expand="block" (click)="closeModal()">Close</ion-button> -->
+</ion-content>
